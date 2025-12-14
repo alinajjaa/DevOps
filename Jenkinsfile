@@ -1,26 +1,19 @@
 pipeline {
     agent any
-    
+
     tools {
-        maven 'M3'  // Nom de l'installation Maven dans Jenkins
+        maven 'M3'  // Must match the name in Global Tool Configuration
     }
-    
+
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn clean install'
             }
         }
-        
         stage('Test') {
             steps {
                 sh 'mvn test'
-            }
-        }
-        
-        stage('Package') {
-            steps {
-                sh 'mvn package'
             }
         }
     }
